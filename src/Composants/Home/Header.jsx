@@ -6,7 +6,7 @@ const Header = () => {
     <nav className=" py-3 text-black px-[5%] bg-bg-primaire   flex items-center justify-between ">
         
          
-           <img className='h-12 w-30' src="src/assets/icones/pesos_logo.svg" alt="" srcset="" />
+           <img className='h-12 w-30' src="/src/assets/icones/pesos_logo.svg" alt="" srcset="" />
 
 
 
