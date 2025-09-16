@@ -10,7 +10,7 @@ const Header = () => {
 
 
 
-        <button className="px-4 text-sm bg-bg-secondaire text-neutral-100 hover:bg-neutral-600 py-2 rounded-md ">Creer un compte</button>
+        <button className="px-4 text-sm bg-bg-secondaire text-neutral-100  hover:bg-indigo-800 py-2 rounded-md ">Creer un compte</button>
     </nav>
   )
 }
