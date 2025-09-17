@@ -3,10 +3,10 @@ import React from 'react'
 const Main = () => {
   return (
     
-      <main className='px-[3%] w-full '>
+      <main className='px-[3%] w-full pb-20'>
      
         
-         <section className="rounded-xl  bg-blanc h-full  w-full px-[5%] md:px-[10%]">
+         <section className="rounded-xl  bg-blanc h-full pb-20 w-full px-[5%] md:px-[10%]">
 
                 <div className=" md:h-[80vh] w-full text-neutral-900 pt-20">
                          
