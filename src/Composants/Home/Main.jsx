@@ -1,4 +1,8 @@
 import React from 'react'
+import pesos_img3 from '/src/assets/images/pesos_img3.png';
+import pesos_img1 from '/src/assets/images/pesos_img1.png';
+import pesosLogo from '/src/assets/icones/pesos_logo.svg';
+
 
 const Main = () => {
   return (
@@ -42,7 +46,7 @@ const Main = () => {
                     {/* HERO RIGHT */}
 
                     <div className=" max-lg:hidden   lg:w-1/2">
-                       <img className='float-right'  src="src\assets\images\pesos_img3.png" alt="" srcset="" />
+                       <img className='float-right'  src={pesos_img3} alt="" srcset="" />
                     </div>
 
  
@@ -77,13 +81,13 @@ const Main = () => {
                 
             </div>
 
-            <div className="flex flex-col md:flex-row  justify-between items-center gap-20 my-20">
-                    <img className='rounded-xl shadow-lg' src="src\assets\images\pesos_img1.png" alt="" srcset="" />
-                    <div className="w-full md:w-1/2">
-                         <img className='h-100  md:h-100 w-25 md:w-50' src="src/assets/icones/pesos_logo.svg" alt="" srcset="" />
+            <div className="flex flex-col sm:flex-row  justify-between items-center gap-20 my-5 md:my-20">
+                    <img className='w-full sm:w-1/2 lg:w-[500px]  rounded-xl shadow-lg' src={pesos_img1} alt="" srcset="" />
+                    <div className="w-full flex justify-center sm:w-1/2">
+                         <img className='  w-[150px] h-[100px] md:h-100 md:w-25 md:w-50' src={pesosLogo} alt="" srcset="" />
 
                     </div>
-            </div>
+            </div> 
 
                         {/*statistique  */}
 
