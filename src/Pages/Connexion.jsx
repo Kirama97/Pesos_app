@@ -5,7 +5,7 @@ import pesosLogo from '/src/assets/icones/pesos_logo.svg';
 
 const Connexion = () => {
   return (
-   <div className='p-[2%] bg-[url-()] h-[100vh] w-full  '>
+   <div className='p-[2%] bg-[url-()] md:h-[100vh] w-full  '>
  
        <div className=" flex flex-col md:flex-row  rounded-xl bg-[url(src/assets/images/money_bg_hero4.png)] overflow-hidden shadow-xl   bg-blanc h-full  w-full ">
          
@@ -15,7 +15,7 @@ const Connexion = () => {
               
           </div>
  
-          <div className="w-full md:w-1/2 h-full text-blanc  bg-bg-secondaire p-5">
+          <div className="w-full md:w-1/2 h-full text-blanc  bg-bg-secondaire p-5 pb-10">
  
              <h2 className='text-center font-bold text-xl my-5'>Connexion</h2>
             
