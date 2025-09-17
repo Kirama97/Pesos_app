@@ -1,16 +1,30 @@
+import React from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-import React from 'react';
-import { BrowserRouter , Routes , Route } from 'react-router-dom';
-import Accueil from './Pages/Accueil';
+import Accueil from "./Pages/Accueil";
+import Connexion from "./Pages/Connexion";
+import Inscription from "./Pages/Inscription";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Accueil />,
+  },
+  {
+    path: "/connexion",
+    element: <Connexion />,
+  },
+  {
+    path: "/inscription",
+    element: <Inscription />,
+  },
+]);
 
 function App() {
-  return (
-   
-    
-     <Accueil></Accueil>
-
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

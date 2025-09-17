@@ -61,7 +61,7 @@ const Main = () => {
 
               <h1 className='text-2xl text-noire font-bold text-center mb-20'>Pesos c'est plus qu'un compte</h1>
 
-              <ol  className='list-decimal list-inside mt-10   grid grid-cols-2 md:grid-cols-2  lg:grid-cols-3 gap-3 md:gap-10 text-sm md:text-base'>    
+              <ol  className='list-decimal list-inside mt-10   grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-3 md:gap-10 text-sm md:text-base'>    
                 <li className='bg-bg-primaire p-4 rounded-md border border-1 border-indigo-100 hover:border-indigo-300'>Transfert d’argent national (rapide et sécurisé)</li>
                 <li className='bg-bg-primaire p-4 rounded-md border border-1 border-indigo-100 hover:border-indigo-300'>Transfert d’argent international</li>
                 <li className='bg-bg-primaire p-4 rounded-md border border-1 border-indigo-100 hover:border-indigo-300'>Paiement de factures (électricité, eau, internet, téléphone)</li>
