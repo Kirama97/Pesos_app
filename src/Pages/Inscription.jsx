@@ -15,7 +15,7 @@ const Inscription = () => {
              
          </div>
 
-         <div className="w-full md:w-1/2 h-full text-blanc  bg-bg-secondaire p-5">
+         <div className="w-full md:w-1/2 h-full text-blanc  bg-bg-secondaire p-5 max-md:pb-10">
 
             <h2 className='text-center font-bold text-xl my-5'>INSCRIPTION</h2>
            
