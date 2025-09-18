@@ -25,6 +25,9 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    children: [
+      // { index: true, element: <DashboardHome /> }, // Example nested route
+    ],
   },
 ]);
 

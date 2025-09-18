@@ -4,14 +4,10 @@
 
 
 
-@import url('https://fonts.googleapis.com/css2?family=Baumans&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bree+Serif&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-
 
 *{
     box-sizing: border-box;
-    font-family: var(--font2);
+    font-family: var(--font1);
     margin: 0;
     padding: 0;
 
@@ -31,8 +27,8 @@ body {
   --blanc : #ffff ;
   --noire : #000000 ;
   --p-color: #26292896;
-  --font1: "Urbanist", sans-serif;
-  --font2: "Core Sans c", sans-serif;
+  --font1:  "Baumans", system-ui;
+  --font2: "Urbanist", sans-serif;
 
 
 
