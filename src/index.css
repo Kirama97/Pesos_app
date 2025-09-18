@@ -11,8 +11,9 @@
 
 *{
     box-sizing: border-box;
-    /* font-family: "Baumans", system-ui;! */
     font-family: var(--font2);
+    margin: 0;
+    padding: 0;
 
 }
 

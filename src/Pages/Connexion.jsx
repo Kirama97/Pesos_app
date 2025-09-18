@@ -1,9 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import pesosLogo from '/src/assets/icones/pesos_logo.svg';
+import { Login } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+
+const Connexion = () => { 
+
+const navigate = useNavigate()
+
+const submitForm = (e) => {
+
+  e.preventDefault();
+
+ 
+
+   return navigate('/dashboard')
+
+}
 
 
-const Connexion = () => {
+
+
+
   return (
    <div className='p-[2%] bg-[url-()] md:h-[100vh] w-full  '>
  
@@ -20,22 +38,17 @@ const Connexion = () => {
              <h2 className='text-center font-bold text-xl my-5'>Connexion</h2>
             
  
-             <form action="" className='mt-10 px-3 md:px-10'>
+             <form action="" onSubmit={submitForm}  className='mt-10 px-3 md:px-10'>
 
               
                 <div className="flex flex-col gap-2 mb-5">
-                    <label htmlFor="nom">Email</label>
-                    <input className='p-2 rounded-sm  outline-double outline-indigo-600 text-black text-sm placeholder:text-[13px]' type="Email" name="email" id="email" placeholder='Email' />
+                    <label htmlFor="email">Email</label>
+                    <input  className='p-2 rounded-sm  outline-double outline-indigo-600 text-black text-sm placeholder:text-[13px]' type="Email" name="email" id="email" placeholder='Email' />
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="prenom">Mots de passe</label>
-                    <input className='p-2 rounded-sm  outline-double outline-indigo-600 text-black text-sm placeholder:text-[13px]' type="password" name="password" id="password"  placeholder="mots de passe" />
+                    <input   className='p-2 rounded-sm  outline-double outline-indigo-600 text-black text-sm placeholder:text-[13px]' type="password" name="password" id="password"  placeholder="mots de passe" />
                 </div>
-
-            
-
-             
-
 
 
                 <button type='submit'  className='mt-10 w-full rounded-sm py-3 bg-indigo-900 hover:bg-indigo-950'>Connexion</button>

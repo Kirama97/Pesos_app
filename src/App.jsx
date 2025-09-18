@@ -7,6 +7,7 @@ import {
 import Accueil from "./Pages/Accueil";
 import Connexion from "./Pages/Connexion";
 import Inscription from "./Pages/Inscription";
+import Dashboard from "./Pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/inscription",
     element: <Inscription />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 
