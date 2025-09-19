@@ -1,9 +1,15 @@
 import React from 'react'
 import { LuShare } from 'react-icons/lu';
+import FormEnvoie from './FormEnvoie';
 
 
 const Envoyer = () => {
   return (
+
+
+  <>
+   {/* // button envoie */}
+
       <div className="w-full h-full rounded-md backdrop-blur-md bg-green-500/40">
           <div className="flex flex-col h-full justify-center items-center gap-2">
               <button className="group hover:bg-green-700 hover:shadow-sm w-10 h-10 rounded-full bg-bg-primaire flex justify-center items-center">
@@ -14,6 +20,12 @@ const Envoyer = () => {
               </div>
           </div>
       </div>
+
+      <FormEnvoie></FormEnvoie>
+  </>
+   
+
+
   )
 }
 

@@ -1,58 +1,54 @@
-import React from 'react'
+import React from 'react';
 import pesosLogoVerticale from '/src/assets/icones/pesos_logo_white_vertical.svg';
 import { FaHome } from 'react-icons/fa';
 import { FaHistory } from 'react-icons/fa';
 import { BiHelpCircle } from 'react-icons/bi';
 import { AiOutlineSetting } from 'react-icons/ai';
+import { NavLink } from 'react-router-dom';
+import { GiStopSign } from 'react-icons/gi';
 
+const Aside = () => {
+  // Fonction qui retourne les classes du NavLink
+  const NavAside = (isActive) =>
+    isActive
+      ? "w-10 h-8 duration-100 group cursor-pointer border-2 border-bg-secondaire rounded-full bg-bg-secondaire transition flex items-center justify-center"
+      : "w-10 h-8 overflow-hidden duration-100 group cursor-pointer border-2 bg-indigo-5 shadow-md border-blanc rounded-full backdrop-blur-sm hover:bg-indigo-600 transition flex items-center justify-center";
 
-const asideBar = () => {
+  // Fonction qui retourne les classes des icônes
+  const NavAsideIcone = (isActive) =>
+    isActive
+      ? "w-4 h-4 text-white"
+      : "w-4 h-4 text-bg-secondaire group-hover:text-blanc";
+
   return (
-    <div className='rounded-xl flex flex-col justify-between  h-full bottom-3 bg-bg-primaire py-5 text-white '>
+    <div className="rounded-xl flex flex-col justify-between h-full bottom-3 bg-bg-primaire py-5 text-white">
+      <img className="h-10 w-[60px] mx-auto" src={pesosLogoVerticale} alt="Pesos Logo" />
 
-        <img className='h-10 w-15 mx-auto'  src={pesosLogoVerticale} alt="" srcset="" />
-      
+      <div className="icons flex items-center gap-3 flex-col mt-10">
+        <NavLink to="/dashboard/accueil" title="home" className={({ isActive }) => NavAside(isActive)}>
+          {({ isActive }) => <FaHome className={NavAsideIcone(isActive)} />}
+        </NavLink>
 
-            <div className="icons flex items-center gap-3  flex-col mt-10">
-                           
-                    <div title='home' className="w-10 h-8 duration-300 group cursor-pointer border-2  border-bg-secondaire  rounded-full bg-bg-secondaire hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
-                                 <FaHome className="group-hover:text-bg-secondaire  w-4 h-4 text-blanc" />
-                    </div>
-         
-                    <div title='Historique' className="w-10 h-8 overflow-hidden duration-30 group cursor-pointer border-2 bg-neutral-200 border-bg-blanc  rounded-full backdrop-blur-sm hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
-                                 <FaHistory className=' group-hover:text-bg-secondaire  w-4 h-5 text-neutral-600'/>
-                                   
-                    </div>
-         
-                    <div title='Aide' className="w-10 h-8 overflow-hidden duration-30 group cursor-pointer border-2 bg-neutral-200 border-bg-blanc  rounded-full backdrop-blur-sm hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
-                             
-                                 <BiHelpCircle className="group-hover:text-bg-secondaire  w-5 h-5 text-neutral-600"/>
-                                
-                    </div>
-                       
-              </div>
+        <NavLink to="/dashboard/historique" title="Historique" className={({ isActive }) => NavAside(isActive)}>
+          {({ isActive }) => <FaHistory className={NavAsideIcone(isActive)} />}
+        </NavLink>
 
+        <NavLink to="/dashboard/annuler_trenfert" title="Annuler transfert" className={({ isActive }) => NavAside(isActive)}>
+          {({ isActive }) => <GiStopSign className={NavAsideIcone(isActive)} />}
+        </NavLink>
+      </div>
 
-             
+      <div className="icons flex items-center gap-3 flex-col mt-10">
+        <NavLink to="/dashboard/parametre" className={({ isActive }) => NavAside(isActive)}>
+          {({ isActive }) => <AiOutlineSetting className={NavAsideIcone(isActive)} />}
+        </NavLink>
 
-               <div className="icons flex items-center gap-3  flex-col mt-10">
-                           
-                   
-         
-                    <div className="w-10 h-8 overflow-hidden duration-30 group cursor-pointer border-2 bg-neutral-200 border-bg-blanc  rounded-full backdrop-blur-sm hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
-                                 <AiOutlineSetting className=' group-hover:text-bg-secondaire  w-4 h-5 text-neutral-600'/>
-                                   
-                    </div>
-         
-                    <div className="w-10 h-8 overflow-hidden duration-30 group cursor-pointer border-2 bg-neutral-200 border-bg-blanc  rounded-full backdrop-blur-sm hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
-                             
-                                 <BiHelpCircle className="group-hover:text-bg-secondaire  w-5 h-5 text-neutral-600"/>
-                                
-                    </div>
-                       
-              </div>
+        <NavLink to="/dashboard/aide" className={({ isActive }) => NavAside(isActive)}>
+          {({ isActive }) => <BiHelpCircle className={NavAsideIcone(isActive)} />}
+        </NavLink>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default asideBar
+export default Aside;
