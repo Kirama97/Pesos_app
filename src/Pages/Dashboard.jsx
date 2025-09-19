@@ -1,4 +1,5 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 import Navbar from '../Composants/Dashboard/Navbar'
 import Aside from '../Composants/Dashboard/Aside'
 const Dashboard = () => {
@@ -9,9 +10,7 @@ const Dashboard = () => {
          <Aside></Aside>
             <div className='w-11/12 h-full flex flex-col gap-5 '>
                 <Navbar></Navbar>
-                <div className=' bg-white rounded-xl flex-1 '>
-                    Contenu du tableau de bord
-                </div>
+                <Outlet></Outlet>
             </div>
         
      

@@ -8,6 +8,7 @@ import Accueil from "./Pages/Accueil";
 import Connexion from "./Pages/Connexion";
 import Inscription from "./Pages/Inscription";
 import Dashboard from "./Pages/Dashboard";
+import NotFoundPage from "./Pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -25,9 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [
-      // { index: true, element: <DashboardHome /> }, // Example nested route
-    ],
+  },
+  {
+    path: "/*",
+    element: <NotFoundPage />,
   },
 ]);
 
