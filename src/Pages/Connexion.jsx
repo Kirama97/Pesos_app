@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import pesosLogo from '/src/assets/icones/pesos_logo.svg';
+import moneybghero4 from '/src/assets/images/money_bg_hero4.png';
+
 import { Login } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { TbBackground } from 'react-icons/tb';
 
 const Connexion = () => { 
 
@@ -25,15 +28,15 @@ const submitForm = (e) => {
   return (
    <div className='p-[2%] bg-[url-()] md:h-[100vh] w-full  '>
  
-       <div className=" flex flex-col md:flex-row  rounded-xl bg-[url(src/assets/images/money_bg_hero4.png)] overflow-hidden shadow-xl   bg-blanc h-full  w-full ">
+       <div className=" flex flex-col md:flex-row  rounded-xl ] overflow-hidden shadow-xl   bg-blanc h-full  w-full "  >
          
-          <div className=" w-full  md:w-1/2 md:flex bg-[url(src/assets/images/money_bg_hero4.png)]  justify-center items-center">
+          <div className=" w-full md:w-1/2 lg:w-3/5 md:flex   justify-center items-center" style={{ backgroundImage: `url(${moneybghero4})` }}>
              
             <img className= ' max-md:mx-auto h-[50px] md:h-[100px] w-30' src={pesosLogo} alt="" srcset="" />
               
           </div>
  
-          <div className="w-full md:w-1/2 h-full text-blanc  bg-bg-secondaire p-5 pb-10">
+          <div className=" w-full md:w-1/2 lg:w-2/5  h-full text-blanc  bg-bg-secondaire p-5 pb-10">
  
              <h2 className='text-center font-bold text-xl my-5'>Connexion</h2>
             
