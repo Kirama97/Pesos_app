@@ -98,7 +98,7 @@ const FormEnvoie = () => {
 
             <button
             type="submit"
-            className="mt-4 bg-bg-secondaire text-white rounded py-2 font-semibold hover:bg-indigo-800 transition"
+            className="mt-4 bg-bg-secondaire text-white rounded py-2  hover:bg-indigo-800 transition"
             >
             Envoyer
            </button>
