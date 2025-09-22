@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 
 import { useState } from 'react';
 
-const FormEnvoie = () => {
+
+const FormEnvoie = ({onClose}) => {
 
 
   const [nom , setNom] = useState("");
@@ -17,11 +18,13 @@ const FormEnvoie = () => {
     e.preventDefault();
 
         toast.success(
-    <p className="text-sm">
-        Envoi de <span className=" text-bg-secondaire">{montant}</span> CFA à {" "}
-        <span className=" text-bg-secondaire">{nom}</span>
-    </p>
+      <p className="text-sm">
+          Envoi de <span className=" text-bg-secondaire">{montant}</span> CFA à {" "}
+          <span className=" text-bg-secondaire">{nom}</span>
+      </p>
     );
+
+    if(onClose)  onClose();
 
   }
 
@@ -37,7 +40,10 @@ const FormEnvoie = () => {
 
 
         <div className="bg-white w-full rounded-xl shadow-lg p-8 max-w-lg relative ">
-            <button className='absolute top-5 right-5 text-gray-400 hover:text-red-500 duration-75 text-xl'> &times;
+            <button 
+            onClick={onClose}
+            aria-label='Fermer'
+            className='absolute top-5 right-5 text-gray-400 hover:text-red-500 duration-75 text-xl'> &times;
             </button>
 
             <h2 className='text-2xl font-bold mb-6 text-center'>Envoyer de l'argent</h2>

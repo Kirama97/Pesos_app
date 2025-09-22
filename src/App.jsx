@@ -37,11 +37,13 @@ const router = createBrowserRouter([
        { path: "historique" , element: <Historique /> },
        { path: "aide" , element: <Aide /> },
        { path: "annuler_trenfert" , element: <AnnulerTransfer /> },
-       { path: "parametre" , element: <Parametre /> },
-       { path: "profil" , element: <Profil /> },
+       { path: "parametre" , element: <Parametre /> }
+     
     ]
       
   },
+    
+  { path: "profil" , element: <Profil /> },
   {
     path: "/*",
     element: <NotFoundPage />,

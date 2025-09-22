@@ -11,9 +11,11 @@ const Dashboard = () => {
       <main className='  h-[100vh] flex gap-5 bg-slate-300 p-5'>
        
             <Aside></Aside>
-            <div className='w-11/12 h-full flex flex-col gap-5 '>
+            <div className='w-11/12  flex flex-col  '>
                 <Navbar></Navbar>
-                <Outlet></Outlet>
+                <div className="  w-full h-full mt-5">
+                  <Outlet></Outlet>
+                </div>
                 <ToastContainer />
             </div>
         

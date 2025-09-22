@@ -17,7 +17,7 @@ const submitForm = (e) => {
 
  
 
-   return navigate('/dashboard')
+   return navigate('/dashboard/accueil')
 
 }
 

@@ -54,7 +54,7 @@ const Navbar = () => {
 
                      {/* profil */}
 
-                    <NavLink to="/dashboard/profil" className="w-8 h-8 overflow-hidden group cursor-pointer border-2  border-bg-blanc  rounded-full bg-bg-secondaire hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
+                    <NavLink to="/profil" className="w-8 h-8 overflow-hidden group cursor-pointer border-2  border-bg-blanc  rounded-full bg-bg-secondaire hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
                         {/* <FaRegUser className='group-hover:text-bg-secondaire  w-4 h-4 text-blanc'></FaRegUser> */}
                           <img className=' object-cover group-hover:border-bg-secondaire ' src={profil} alt="" />
                     </NavLink>
