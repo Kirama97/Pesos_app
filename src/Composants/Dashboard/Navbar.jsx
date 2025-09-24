@@ -1,30 +1,40 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import pesosLogo from '/src/assets/icones/pesos_logo.svg';
+
+import { NavLink, useNavigate } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
-import { FaRegUser } from 'react-icons/fa';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import profil from '/src/assets/images/profil.jpg'
 import pesos_img6 from '/src/assets/images/pesos_img6.png'
 import MontantCompte from './MontantCompte';
 import Envoyer from './Envoyer';
 import Retrait from './Retrait';
-
-
-import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
-import IconButton from '@mui/material/IconButton';
 
 
 
-const Navbar = () => {
+
+
+
+const Navbar = ({ user}) => {
+
+
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    
+    navigate('/connexion'); 
+  };
+
+
+
+
   return (
         <div className='p-5 flex flex-col justify-between h-[32vh] bg-no-repeat bg-cover bg-center  bg-bg-primaire text-noire rounded-xl  '  style={{ backgroundImage: `url(${pesos_img6})` }}>
             <div className=" w-full flex justify-between items-center">
                {/* nom compte */}
-              <h1 className='text-bg-secondaire font-semibold text-xl'>Diene thiam</h1>
+              {/* <h1 className='text-bg-secondaire font-semibold text-xl'>{user.prenom} {user.nom}</h1> */}
 
                 {/* numero compte */}
                 <div className="numero_compte backdrop-blur-sm px-5 py-2 text-sm flex gap-5 items-center rounded-full bg-neutral-100/10  shadow-md">
@@ -60,11 +70,11 @@ const Navbar = () => {
                     </NavLink>
 
                        {/* deconexion */}
-                    <div className="w-8 h-8 group cursor-pointer border-2  border-bg-secondaire  rounded-full bg-bg-secondaire hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
+                    <NavLink   onClick={handleLogout}  className="w-8 h-8 group cursor-pointer border-2  border-bg-secondaire  rounded-full bg-bg-secondaire hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
                     
-                        <RiLogoutCircleRLine className="group-hover:text-bg-secondaire  w-4 h-4 text-blanc"></RiLogoutCircleRLine>
+                        <RiLogoutCircleRLine  className="group-hover:text-bg-secondaire  w-4 h-4 text-blanc"></RiLogoutCircleRLine>
                       
-                    </div>
+                    </NavLink>
               
                 </div>
 

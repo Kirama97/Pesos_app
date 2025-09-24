@@ -2,8 +2,17 @@ import React from 'react'
 import { FaUserCircle, FaMoneyBillWave, FaArrowDown, FaArrowUp } from 'react-icons/fa'
 import Envoyer from './Envoyer'
 import { FaPhone } from 'react-icons/fa6';
+import { useOutletContext } from 'react-router-dom';
 
 const HomeDash = () => {
+
+
+
+  //  const { user } = useOutletContext();
+
+
+
+
   // Données fictives pour l'exemple
   const user = {
     nom: "Kira Dev",
