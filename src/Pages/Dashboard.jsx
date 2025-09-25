@@ -40,7 +40,7 @@ useEffect(() => {
       <div className='w-11/12 flex flex-col'>
         <Navbar compte={compte} />
         <div className="w-full h-full mt-5">
-          <Outlet context={compte} />
+          <Outlet context={{compte}} />
         </div>
         <ToastContainer />
       </div>

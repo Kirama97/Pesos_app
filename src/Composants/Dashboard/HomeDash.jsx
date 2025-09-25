@@ -15,6 +15,7 @@ const HomeDash = ( ) => {
 
 //  console.log(compte.utilisateur)
 
+ const { compte } = useOutletContext();
 
   // Données fictives pour l'exemple
   const user = {
@@ -38,9 +39,9 @@ const HomeDash = ( ) => {
         <FaPhone className="text-2xl text-bg-secondaire" />
         <div>
           <div className="font-bold text-md">Numero de telephone</div>
-             {/* {compte && (
+             {compte && (
           <div className="text-gray-500 text-sm">{compte.utilisateur?.telephone}</div>
-          )} */}
+          )}
 
         </div>
       </div>
