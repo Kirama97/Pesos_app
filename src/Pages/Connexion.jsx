@@ -37,7 +37,7 @@ const Connexion = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(user)
       });
       const contentType = response.headers.get("content-type");
       let responseBody = null;
@@ -45,12 +45,14 @@ const Connexion = () => {
       if (contentType && contentType.includes("application/json")) {
         responseBody = await response.json();
       } else {
-        responseBody = await response.text(); // une seule lecture
+        responseBody = await response.text(); 
       }
 
       if (response.ok) {
         if (responseBody && responseBody.token) {
           localStorage.setItem('token', responseBody.token);
+          console.log(responseBody);
+            
         }
         alert('Connexion réussie !');
         navigate('/dashboard/accueil');

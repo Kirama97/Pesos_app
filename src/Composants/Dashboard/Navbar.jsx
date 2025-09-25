@@ -15,7 +15,7 @@ import Badge from '@mui/material/Badge';
 
 
 
-const Navbar = ({ user}) => {
+const Navbar = ({ compte}) => {
 
 
 
@@ -34,12 +34,17 @@ const Navbar = ({ user}) => {
         <div className='p-5 flex flex-col justify-between h-[32vh] bg-no-repeat bg-cover bg-center  bg-bg-primaire text-noire rounded-xl  '  style={{ backgroundImage: `url(${pesos_img6})` }}>
             <div className=" w-full flex justify-between items-center">
                {/* nom compte */}
-              {/* <h1 className='text-bg-secondaire font-semibold text-xl'>{user.prenom} {user.nom}</h1> */}
-
+               {compte && (
+                <h1 className='text-bg-secondaire font-semibold text-xl'>
+                 {compte.utilisateur?.prenom} {compte.utilisateur?.nom}
+                </h1>
+               )}
                 {/* numero compte */}
                 <div className="numero_compte backdrop-blur-sm px-5 py-2 text-sm flex gap-5 items-center rounded-full bg-neutral-100/10  shadow-md">
                   <FaSearch className="text-neutral-4500" />
-                  <span className='flex items-center gap-3 rounded-full text-neutral-100 bg-indigo-600/50 backdrop-blur-lg py-2 px-3 '>Numero Compte : <p>28U58239595</p></span>
+                  <span className='flex items-center gap-3 rounded-full text-neutral-100 bg-indigo-600/50 backdrop-blur-lg py-2 px-3 '>Numero Compte : 
+                  {compte && ( <p>{compte.numeroCompte}</p> )}
+             </span>
                 </div>
 
                 <div className="icons flex items-center gap-3">
@@ -89,7 +94,7 @@ const Navbar = ({ user}) => {
                   <Retrait></Retrait>     
                </div>
 
-               <MontantCompte></MontantCompte>
+               <MontantCompte compte={compte} ></MontantCompte>
 
             </div>
 

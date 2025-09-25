@@ -4,13 +4,16 @@ import Envoyer from './Envoyer'
 import { FaPhone } from 'react-icons/fa6';
 import { useOutletContext } from 'react-router-dom';
 
-const HomeDash = () => {
+const HomeDash = ( { compte}) => {
 
 
 
-  //  const { user } = useOutletContext();
+  //  if (!compte || !compte.utilisateur) {
+  //   return <div>Chargement...</div>;
+  // }
 
 
+//  console.log(compte.utilisateur)
 
 
   // Données fictives pour l'exemple
@@ -39,7 +42,10 @@ const HomeDash = () => {
         <FaPhone className="text-2xl text-bg-secondaire" />
         <div>
           <div className="font-bold text-md">Numero de telephone</div>
-          <div className="text-gray-500 text-sm">{user.numero}</div>
+             {/* {compte && (
+          <div className="text-gray-500 text-sm">{compte.utilisateur?.telephone}</div>
+          )} */}
+
         </div>
       </div>
 
