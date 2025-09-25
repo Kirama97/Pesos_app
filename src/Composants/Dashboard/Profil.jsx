@@ -3,19 +3,64 @@ import { FaUserEdit, FaCamera } from 'react-icons/fa'
 import Aside from './Aside'
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { fetchUserProfile } from '../../src/services/api';
+import { fetchUserProfile } from '../../services/api';
+import { useEffect } from 'react';
+import default_profil from '/src/assets/images/default_profil.jpg'
+
+
+
+
+
+
 
 const Profil = () => {
-  const [photo, setPhoto] = useState(null)
-  const [photoPreview, setPhotoPreview] = useState(null)
-  const [nom, setNom] = useState("Dev")
-  const [prenom, setPreom] = useState("Kira")
-  const [email, setEmail] = useState("kira@example.com")
-  const [adresse, setAdresse] = useState("Abidjan, Côte d'Ivoire")
-  const [tel, setTel] = useState("+225 07 00 00 00")
-  const [identite, setIdentite] = useState("CI123456789")
-  const [ancienPassword, setAncienPassword] = useState("")
-  const [nouveauPassword, setNouveauPassword] = useState("")
+
+
+
+  const [profil, setProfil] = useState(null);
+  const [loader, setLoading] = useState(true);
+  const [erreur, setErreur] = useState("");
+
+  const [photo, setPhoto] = useState(null);
+  // const [photoPiece, setPhotoPiece] = useState(null);
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [email, setEmail] = useState("");
+  const [pays, setPays] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [numeroPiece, setNumeroPiece] = useState("");
+  const [newMotDePasse, setNewMotDePasse] = useState("");
+  const [motDepasse, setMotDePasse] = useState("");
+
+ useEffect(() => {
+    const getProfile = async () => {
+      try {
+        console.log("Token présent :", localStorage.getItem("token"));
+        const data = await fetchUserProfile();
+        console.log("Profil :", data);
+        setProfil(data);
+
+       
+        setNom(data.nom || "");
+        setPrenom(data.prenom || "");
+        setEmail(data.email || "");
+        setPays(data.pays || "");
+        setTelephone(data.telephone || "");
+        // setMotDePasse(data.motDePasse || "");
+        setNumeroPiece(data.numeroPiece || "");
+      } catch (err) {
+        console.error("Erreur fetchUserProfile :", err);
+        setErreur(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProfile();
+  }, []);
+
+  if (loader) return <div>Chargement...</div>;
+  if (erreur) return <div className="text-red-500">{erreur}</div>;
 
 
 
@@ -24,18 +69,33 @@ const Profil = () => {
     setPhoto(file)
     if (file) {
       const reader = new FileReader()
-      reader.onloadend = () => setPhotoPreview(reader.result)
+      reader.onloadend = () => setPhoto(reader.result)
       reader.readAsDataURL(file)
     } else {
-      setPhotoPreview(null)
+      setPhoto(null)
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    const NewProfil = {
+
+        nom,
+        prenom,
+        email,
+        pays,
+        numeroPiece,
+        telephone,
+        motDePasse : newMotDePasse ,
+        photo,
+        photoPiece
+
+    }
+    console.log()
   
     toast.success('Profil mis à jour ! ')
-    navigator
+  
   }
 
   return (
@@ -52,7 +112,7 @@ const Profil = () => {
               {/* Photo de profil */}
               <div className="relative">
                 <img
-                  src={photoPreview || "/src/assets/icones/avatar_default.png"}
+                  src={photo || default_profil}
                   alt="Photo de profil"
                   className="w-28 h-28 rounded-full object-cover border-4 border-bg-secondaire shadow"
                 />
@@ -70,26 +130,18 @@ const Profil = () => {
 
               {/* Infos utilisateur */}
               <div className="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm mb-1 text-gray-700">Nom </label>
-                  <input
-                    type="text"
-                    className="w-full border rounded px-3 py-2 text-sm"
-                    value={nom}
-                    onChange={e => setNom(e.target.value)}
-                    required
-                  />
-                </div>
+              
                 <div>
                   <label className="block text-sm mb-1 text-gray-700">Prenom</label>
                   <input
                     type="text"
                     className="w-full border rounded px-3 py-2 text-sm"
                     value={prenom}
-                    onChange={e => setPreom(e.target.value)}
+                    onChange={e => setPrenom(e.target.value)}
                     required
                   />
                 </div>
+                
                 <div>
                   <label className="block text-sm mb-1 text-gray-700">Email</label>
                   <input
@@ -101,12 +153,12 @@ const Profil = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm mb-1 text-gray-700">Adresse</label>
+                  <label className="block text-sm mb-1 text-gray-700">Pays</label>
                   <input
                     type="text"
                     className="w-full border rounded px-3 py-2 text-sm"
-                    value={adresse}
-                    onChange={e => setAdresse(e.target.value)}
+                    value={pays}
+                    onChange={e => setPays(e.target.value)}
                     required
                   />
                 </div>
@@ -115,8 +167,8 @@ const Profil = () => {
                   <input
                     type="tel"
                     className="w-full border rounded px-3 py-2 text-sm"
-                    value={tel}
-                    onChange={e => setTel(e.target.value)}
+                    value={telephone}
+                    onChange={e => setTelephone(e.target.value)}
                     required
                   />
                 </div>
@@ -125,8 +177,8 @@ const Profil = () => {
                   <input
                     type="text"
                     className="w-full border rounded px-3 py-2 text-sm"
-                    value={identite}
-                    onChange={e => setIdentite(e.target.value)}
+                    value={numeroPiece}
+                    onChange={e => setNumeroPiece(e.target.value)}
                     required
                   />
                 </div>
@@ -135,8 +187,8 @@ const Profil = () => {
                   <input
                     type="password"
                     className="w-full border rounded px-3 py-2 text-sm"
-                    value={ancienPassword}
-                    onChange={e => setAncienPassword(e.target.value)}
+                    value={motDepasse}
+                    onChange={e => setMotDePasse(e.target.value)}
                     placeholder="Ancien mot de passe"
                   />
                 </div>
@@ -145,8 +197,8 @@ const Profil = () => {
                   <input
                     type="password"
                     className="w-full border rounded px-3 py-2 text-sm"
-                    value={nouveauPassword}
-                    onChange={e => setNouveauPassword(e.target.value)}
+                    value={newMotDePasse}
+                    onChange={e => setNewMotDePasse(e.target.value)}
                     placeholder="Nouveau mot de passe"
                   />
                 </div>
@@ -161,8 +213,9 @@ const Profil = () => {
             </form>
           </div>
         </main>
-        <ToastContainer />
+       
       </section>
+       <ToastContainer />
     </>
   )
 }

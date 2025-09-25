@@ -4,7 +4,7 @@ import Navbar from '../Composants/Dashboard/Navbar'
 import Aside from '../Composants/Dashboard/Aside'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchUserProfile } from '../../src/services/api';
+import { fetchUserCompte } from '../../src/services/api';
 
 const Dashboard = () => {
   const [compte, setCompte] = useState(null);
@@ -17,7 +17,7 @@ useEffect(() => {
   const getCompte = async () => {
     try {
       console.log("Token présent :", localStorage.getItem("token"));
-      const data = await fetchUserProfile();
+      const data = await fetchUserCompte();
       console.log("Mes comptes :", data[0]);
       setCompte(data[0]);
     } catch (err) {
@@ -31,8 +31,8 @@ useEffect(() => {
 }, []);
 
 
-  // if (loader) return <div>Chargement...</div>;
-  // if (erreur) return <div className="text-red-500">{erreur}</div>;
+  if (loader) return <div>Chargement...</div>;
+  if (erreur) return <div className="text-red-500">{erreur}</div>;
 
   return (
     <main className='h-[100vh] flex gap-5 bg-slate-300 p-5'>
