@@ -36,7 +36,7 @@ const Navbar = ({ compte}) => {
                {/* nom compte */}
                {compte && (
                 <h1 className='text-bg-secondaire font-semibold text-xl'>
-                 {compte.utilisateur?.prenom} {compte.utilisateur?.nom}
+                 {compte.utilisateur.prenom} {compte.utilisateur?.nom}
                 </h1>
                )}
                 {/* numero compte */}

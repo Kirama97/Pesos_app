@@ -11,23 +11,27 @@ const Dashboard = () => {
   const [loader, setLoading] = useState(true);
   const [erreur, setErreur] = useState("");
 
-  useEffect(() => {
-    const getCompte = async () => {
-      try {
-        const data = await fetchUserProfile();
-        console.log(data[0]);
-        setCompte(data[0]);
-      } catch (err) {
-        setErreur(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getCompte();
-  }, []);
 
 
-  if (loader) return <div>Chargement...</div>;
+useEffect(() => {
+  const getCompte = async () => {
+    try {
+      console.log("Token présent :", localStorage.getItem("token"));
+      const data = await fetchUserProfile();
+      console.log("Mes comptes :", data[0]);
+      setCompte(data[0]);
+    } catch (err) {
+      console.error("Erreur fetchUserProfile :", err);
+      setErreur(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  getCompte();
+}, []);
+
+
+  // if (loader) return <div>Chargement...</div>;
   // if (erreur) return <div className="text-red-500">{erreur}</div>;
 
   return (

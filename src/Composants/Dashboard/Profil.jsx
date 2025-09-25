@@ -3,6 +3,7 @@ import { FaUserEdit, FaCamera } from 'react-icons/fa'
 import Aside from './Aside'
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import { fetchUserProfile } from '../../src/services/api';
 
 const Profil = () => {
   const [photo, setPhoto] = useState(null)
@@ -15,6 +16,8 @@ const Profil = () => {
   const [identite, setIdentite] = useState("CI123456789")
   const [ancienPassword, setAncienPassword] = useState("")
   const [nouveauPassword, setNouveauPassword] = useState("")
+
+
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0]

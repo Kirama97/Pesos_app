@@ -4,7 +4,7 @@ import Envoyer from './Envoyer'
 import { FaPhone } from 'react-icons/fa6';
 import { useOutletContext } from 'react-router-dom';
 
-const HomeDash = ( { compte}) => {
+const HomeDash = ( ) => {
 
 
 
@@ -28,11 +28,7 @@ const HomeDash = ( { compte}) => {
     { id: 1, type: "reçu", montant: 20000, date: "18/09/2025", nom: "Alice", icon: <FaArrowDown className="text-green-500" /> },
     { id: 2, type: "envoyé", montant: 10000, date: "17/09/2025", nom: "Bob", icon: <FaArrowUp className="text-red-500" /> },
     { id: 3, type: "reçu", montant: 5000, date: "16/09/2025", nom: "Charlie", icon: <FaArrowDown className="text-green-500" /> },
-    { id: 3, type: "reçu", montant: 5000, date: "16/09/2025", nom: "Charlie", icon: <FaArrowDown className="text-green-500" /> },
-    { id: 3, type: "reçu", montant: 5000, date: "16/09/2025", nom: "Charlie", icon: <FaArrowDown className="text-green-500" /> },
-    { id: 3, type: "reçu", montant: 5000, date: "16/09/2025", nom: "Charlie", icon: <FaArrowDown className="text-green-500" /> },
-    { id: 3, type: "reçu", montant: 5000, date: "16/09/2025", nom: "Charlie", icon: <FaArrowDown className="text-green-500" /> },
-    { id: 3, type: "reçu", montant: 5000, date: "16/09/2025", nom: "Charlie", icon: <FaArrowDown className="text-green-500" /> },
+  
   ]
 
   return (
