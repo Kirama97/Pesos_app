@@ -10,7 +10,7 @@ import pesos_img6 from '/src/assets/images/pesos_img6.png'
 import Depot from './Depot';
 import Badge from '@mui/material/Badge';
 import Retrait_admin from './Retrait_Admin';
-import Utilisateurs from './Utilisateurs';
+import NombreUtilisateur from './NombreUtilisateur';
 
 
 
@@ -72,7 +72,7 @@ const Navbar_admin = ({ compte , profil}) => {
 
                      {/* profil */}
 
-                    <NavLink to="/profil" className="w-8 h-8 overflow-hidden group cursor-pointer border-2  border-bg-blanc  rounded-full bg-bg-secondaire hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
+                    <NavLink to="/admin/profil" className="w-8 h-8 overflow-hidden group cursor-pointer border-2  border-bg-blanc  rounded-full bg-bg-secondaire hover:bg-bg-primaire transtion-10 flex items-center justify-center "> 
                         <FaRegUser className='group-hover:text-bg-secondaire  w-4 h-4 text-blanc'></FaRegUser>
                      
                           {/* <img className=' object-cover group-hover:border-bg-secondaire ' src={default_profil} alt="" /> */}
@@ -93,12 +93,12 @@ const Navbar_admin = ({ compte , profil}) => {
 
             <div className="flex h-[15vh] w-full justify-between items-center mt-10">
 
-               <div className="grid grid-cols-3 gap-5 w-3/6 h-full ">              
+               <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 w-5/6 md:w-3/6 h-full ">              
                   <Depot/>
                   <Retrait_admin/>   
                </div>
 
-               <Utilisateurs compte={compte} ></Utilisateurs>
+               <NombreUtilisateur  ></NombreUtilisateur>
 
             </div>
 

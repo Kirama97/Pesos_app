@@ -11,6 +11,9 @@ import { le_numero } from './HomeDash';
 const FormEnvoie = ({onClose }) => {
 
 
+  console.log(le_numero)
+
+
 // const context = useOutletContext() || {};
 // const { profil = {}, compte = {} } = context;
 
@@ -80,6 +83,7 @@ const handleSubmit = async (e) => {
                     <input
                     type="text"
                     value={telephoneSource}
+                    onChange={e => setTelephoneSource(e.target.value)}
                     disabled
                     required
                     className="w-full border rounded px-3 py-2 text-neutral-500 focus:outline-none focus:ring-2 focus:ring-bg-secondaire"

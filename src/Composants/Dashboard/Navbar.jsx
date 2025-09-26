@@ -92,7 +92,7 @@ const Navbar = ({ compte , profil}) => {
 
             <div className="flex h-[15vh] w-full justify-between items-center mt-10">
 
-               <div className="grid grid-cols-3 gap-5 w-3/6 h-full ">              
+               <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 w-3/6 h-full ">              
                   <Envoyer></Envoyer>   
                   <Retrait></Retrait>     
                </div>

@@ -20,6 +20,7 @@ import Parametre_admin from "./Composants/Dash_Admin/Parametre_admin";
 import Profil from "./Composants/Dashboard/Profil";
 import Profil_admin from "./Composants/Dash_Admin/Profil_admin";
 import PageAdmin from "./Pages/PageAdmin"; 
+import Utilisateurs from "./Composants/Dash_Admin/Utilisateurs";
 
 
 const router = createBrowserRouter([
@@ -30,9 +31,9 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <ProtectedRoute>
-        <Dashboard />
-      </ProtectedRoute>
+     <ProtectedRoute roleRequired="UTILISATEUR_STANDARD">
+      <Dashboard />
+    </ProtectedRoute>
     ),
     children: [
       { path: "accueil", element: <HomeDash /> },
@@ -47,9 +48,9 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectedRoute roleRequired="ADMIN">
-        <PageAdmin />
-      </ProtectedRoute>
+     <ProtectedRoute roleRequired="ADMIN">
+      <PageAdmin />
+    </ProtectedRoute>
     ),
     
     children: [
@@ -57,14 +58,15 @@ const router = createBrowserRouter([
       { path: "historique", element: <Historique_admin /> },
       { path: "aide", element: <Aide_admin /> },
       { path: "parametre", element: <Parametre_admin /> },
-        { path: "annuler_transfert", element: <AnnulerTransfert_admin /> },
+      { path: "annuler_transfert", element: <AnnulerTransfert_admin /> },
+      { path: "utilisateur", element: <Utilisateurs /> },
      
     ],
   },
 
   { path: "*", element: <NotFoundPage /> },
    { path: "profil" , element: <Profil /> },
-   { path: "profil" , element: <Profil_admin /> }
+   { path: "admin/profil" , element: <Profil_admin /> }
 ]);
 
 function App() {

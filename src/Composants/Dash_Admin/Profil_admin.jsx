@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { fetchUserProfile } from '../../services/api';
 import { useEffect } from 'react';
 import default_profil from '/src/assets/images/default_profil.jpg'
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -101,7 +102,7 @@ const Profil_admin = () => {
   return (
     <>
       <section className="h-[100vh] flex gap-5 bg-slate-300 p-5">
-        <Aside_admin />
+       
         <main className='w-full'>
           <div className="bg-white rounded-xl h-full p-6 flex flex-col gap-8 shadow-lg transition-colors">
             <h1 className="text-center text-2xl font-bold mb-4 flex items-center justify-center gap-2 text-bg-secondaire">
@@ -204,13 +205,23 @@ const Profil_admin = () => {
                 </div>
               </div>
 
-              <button
+             <div className="flex items-center gap-4">
+               <button
                 type="submit"
                 disabled
-                className="bg-bg-secondaire text-white rounded py-2 px-8 mt-4 hover:bg-indigo-800 transition"
+                className="bg-bg-secondaire text-white rounded py-2 px-8 mt-4 "
               >
                 Enregistrer les modifications
               </button>
+               <NavLink
+                to="/admin/home"
+                type="submit"
+                disabled
+                className="bg-bg-neutral-100 border border-bg-secondaire  text-bg-secondaire rounded py-2 px-8 mt-4 hover:bg-indigo-800 hover:text-blanc transition"
+              >
+                Home
+              </NavLink>
+             </div>
             </form>
           </div>
         </main>
