@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { LuShare } from 'react-icons/lu';
-import FormRetrait from './FormRetrait';
+import FormEnvoie from './FormEnvoie';
 
 
 
@@ -15,7 +15,7 @@ const Envoyer = () => {
 
 
   <>
-   {/* // button envoie */}
+ 
 
       <div className="w-full h-full rounded-md backdrop-blur-md bg-green-500/40">
           <div 

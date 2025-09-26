@@ -1,61 +1,33 @@
 import React from 'react'
 import { toast } from 'react-toastify';
 import { useState , useEffect } from 'react';
-import { transfertUtilisateur } from "../../services/api";
-import { le_numero } from './HomeDash';
-
-// import { useOutletContext } from 'react-router-dom';
+import { validerRetrait } from "../../services/api";
 
 
-
-const FormEnvoie = ({onClose }) => {
-
-
-// const context = useOutletContext() || {};
-// const { profil = {}, compte = {} } = context;
-
-// console.log(profil)
-
-
-  const [idTransaction, setIdTransaction] = useState("");
-  const [codeRetrait, setCodeRetrait] = useState("");
-
-  
+const FormRetrait = ({onClose }) => {
 
 
 
-  useEffect(() => {
-    const f = (parseFloat(montant) * 1) / 100;
-    setFrais(isNaN(f) ? 0 : f);
-    setTotal(parseFloat(montant || 0) + (isNaN(f) ? 0 : f));
-  }, [montant]);
+
+  const [transactionId, setTransactionId] = useState("");
+  const [code, setCode] = useState("");
+
 
 
 const [loading, setLoading] = useState(false);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
+const handleValidation = async () => {
   try {
-    const data = await transfertUtilisateur({ telephoneSource, telephoneDestination, montant });
-   
-      toast.success(
-        <p className="text-sm">
-          ✅ Transfert réussi ! <br />
-          Montant : {montant} CFA <br />
-          Frais : {frais.toFixed(2)} CFA <br />
-          Total payé : {total.toFixed(2)} CFA
-        </p>
-      );
-      if (onClose) onClose();
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  
+    const result = await validerRetrait({
+      transactionId,
+      code
+    });
+    console.log("Validation réussie ✅", result);
+    toast.success("Retrait validé avec succès !");
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
 
 
 
@@ -71,45 +43,36 @@ const handleSubmit = async (e) => {
             </button>
 
             <h2 className='text-2xl font-bold mb-6 text-center'>Valider le Retrait</h2>
-            <form action="" onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <form action="" onSubmit={handleValidation} className="flex flex-col gap-4">
 
 
-               {/* entrer numero compte */}
+               {/* id transaction*/}
                 <div>
                     <label className="block mb-1 font-medium">Id Transaction</label>
                     <input
                     type="text"
-                    value={idTransaction}
-                    onChange={e => setIdTransaction(e.target.value)}
+                    value={transactionId}
+                    onChange={e => setTransactionId(e.target.value)}
                  
                     required
                     className="w-full border rounded px-3 py-2 text-neutral-500 focus:outline-none focus:ring-2 focus:ring-bg-secondaire"
                     
                     />
               </div>
-               {/* entrer numero compte */}
+               {/* code de retrait */}
                 <div>
                     <label className="block mb-1 font-medium">Code de retrait</label>
                     <input
                     type="text"
-                    value={codeRetrait}
-                    onChange={e => setCodeRetrait(e.target.value)}
+                    value={code}
+                    onChange={e => setCode(e.target.value)}
                     required
                     className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-bg-secondaire"
                     placeholder="Code de retrait"
                     />
               </div>
 
-             
-
-             <div className="flex justify-between items-center mt-2">
-                <span className="font-medium">Frais :</span>
-                <span className="text-bg-secondaire font-bold">{frais.toFixed(2)} FCFA</span>
-             </div>
-
-             
-
-
+       
            <button
             type="submit"
             disabled={loading}
@@ -128,4 +91,4 @@ const handleSubmit = async (e) => {
   )
 }
 
-export default FormEnvoie
+export default FormRetrait

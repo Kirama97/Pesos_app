@@ -89,6 +89,123 @@ export const transfertUtilisateur = async ({
 
 
 
+// admin
+
+
+// faire le retrait !
+
+/**
+ * ✅ Service pour initier un retrait (ADMIN)
+ * @param {Object} params - Les paramètres du retrait
+ * @param {string} params.telephone - Téléphone du client
+ * @param {number} params.montant - Montant du retrait
+ * @returns {Promise<Object>} Réponse du backend (codeValidation, transaction)
+ */
+export const initierRetraitAdmin = async ({ telephone, montant }) => {
+  try {
+    if (!telephone || !montant) {
+      throw new Error("Tous les champs sont obligatoires");
+    }
+
+    if (parseFloat(montant) <= 0) {
+      throw new Error("Le montant doit être supérieur à 0");
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token introuvable, veuillez vous reconnecter");
+    }
+
+    const response = await fetch(`${BASE_URL}/api/transactions/admin/retrait/initier`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        telephone,
+        montant: parseFloat(montant),
+      }),
+    });
+
+    const contentType = response.headers.get("content-type");
+    let data;
+
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      data = { message: text || "Erreur inconnue" };
+    }
+
+    if (!response.ok) {
+      throw new Error(data.message || "Échec de l'initiation du retrait");
+    }
+
+    return data; // ✅ Retourne la réponse complète
+  } catch (error) {
+    console.error("Erreur lors de l'initiation du retrait :", error);
+    throw error;
+  }
+};
+
+
+
+
+
+// --------------------// valider un retrait 
+
+
+
+export const validerRetrait = async ({ transactionId, code }) => {
+  try {
+    // ✅ Vérification des champs obligatoires
+    if (!transactionId || !code) {
+      throw new Error("Le code et l'identifiant de la transaction sont obligatoires");
+    }
+
+    // ✅ Récupération du token
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token d'authentification manquant. Veuillez vous reconnecter.");
+    }
+
+    // ✅ Requête POST
+    const response = await fetch(`${BASE_URL}/api/transactions/retrait/valider`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        transactionId,
+        code,
+      }),
+    });
+
+    // ✅ Gestion de la réponse
+    const contentType = response.headers.get("content-type");
+    let data;
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      data = { message: text || "Réponse inconnue du serveur" };
+    }
+
+    if (!response.ok) {
+      throw new Error(data.message || "Échec de la validation du retrait");
+    }
+
+    return data; // ✅ Succès
+
+  } catch (error) {
+    console.error("Erreur dans validerRetrait:", error);
+    throw error;
+  }
+};
+
+
 
 
 
