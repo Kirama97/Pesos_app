@@ -4,10 +4,12 @@ import Navbar from '../Composants/Dashboard/Navbar'
 import Aside from '../Composants/Dashboard/Aside'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchUserCompte } from '../../src/services/api';
+import { fetchUserCompte , fetchUserProfile  } from '../../src/services/api';
+
 
 const Dashboard = () => {
   const [compte, setCompte] = useState(null);
+  const [profil, setProfil] = useState(null);
   const [loader, setLoading] = useState(true);
   const [erreur, setErreur] = useState("");
 
@@ -18,8 +20,11 @@ useEffect(() => {
     try {
       console.log("Token présent :", localStorage.getItem("token"));
       const data = await fetchUserCompte();
+      const info_profil = await fetchUserProfile();
       console.log("Mes comptes :", data[0]);
+      console.log("Mes profil :", info_profil);
       setCompte(data[0]);
+      setProfil(info_profil);
     } catch (err) {
       console.error("Erreur fetchUserProfile :", err);
       setErreur(err.message);
@@ -32,18 +37,19 @@ useEffect(() => {
 
 
   if (loader) return <div>Chargement...</div>;
-  if (erreur) return <div className="text-red-500">{erreur}</div>;
+  // if (erreur) return <div className="text-red-500">{erreur}</div>;
 
   return (
     <main className='h-[100vh] flex gap-5 bg-slate-300 p-5'>
-      <Aside compte={compte} />
+      <Aside compte={compte} profil={profil}  />
       <div className='w-11/12 flex flex-col'>
-        <Navbar compte={compte} />
+        <Navbar compte={compte} profil={profil}  />
         <div className="w-full h-full mt-5">
-          <Outlet context={{compte}} />
+          <Outlet context={{compte , profil}} />
         </div>
-        <ToastContainer />
+       
       </div>
+       <ToastContainer />
     </main>
   )
 }

@@ -35,6 +35,62 @@ export const fetchUserProfile = () => fetchWithAuth("/api/utilisateurs/profil");
 
 
 
+// transfert
+
+
+
+export const transfertUtilisateur = async ({
+  telephoneSource,
+  telephoneDestination,
+  montant,
+}) => {
+  try {
+    if (!telephoneSource || !telephoneDestination || !montant) {
+      throw new Error("Tous les champs sont obligatoires");
+    }
+
+    if (parseFloat(montant) <= 0) {
+      throw new Error("Le montant doit être supérieur à 0");
+    }
+
+    const token = localStorage.getItem("token"); // ou autre source
+
+    const response = await fetch(`${BASE_URL}/api/transactions/transfert`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        telephoneSource,
+        telephoneDestination,
+        montant: parseFloat(montant),
+      }),
+    });
+    // Lis le corps une seule fois
+    const contentType = response.headers.get("content-type");
+    let data;
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      data = { message: text || "Erreur inconnue" };
+    }
+
+    if (!response.ok) {
+      throw new Error(data.message || "Échec du transfert");
+    }
+
+    return data; // succès
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+
+
 
 
 

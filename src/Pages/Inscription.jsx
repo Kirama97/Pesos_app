@@ -45,19 +45,10 @@ const Inscription = () => {
       if (motDePasse !== cmotDePasse) {
         alert("Les mots de passe ne correspondent pas.");
         return;
-      }
+      };
 
-      const toBase64 = file =>
-        new Promise((resolve, reject) => {
-          if (!file) return resolve(null);
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = error => reject(error);
-        });
-
-      const photoBase64 = await toBase64(photo);
-      const photoPieceBase64 = await toBase64(photoPiece);
+      
+     
 
       const user = {
         nom,
@@ -67,8 +58,8 @@ const Inscription = () => {
         pays,
         motDePasse,
         numeroPiece,
-        photo: photoBase64,
-        photoPiece: photoPieceBase64
+        // photo,
+        // photoPiece
       };
 
       try {

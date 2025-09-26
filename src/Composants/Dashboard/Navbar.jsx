@@ -15,7 +15,7 @@ import Badge from '@mui/material/Badge';
 
 
 
-const Navbar = ({ compte}) => {
+const Navbar = ({ compte , profil}) => {
 
 
 
@@ -34,11 +34,11 @@ const Navbar = ({ compte}) => {
         <div className='p-5 flex flex-col justify-between h-[32vh] bg-no-repeat bg-cover bg-center  bg-bg-primaire text-noire rounded-xl  '  style={{ backgroundImage: `url(${pesos_img6})` }}>
             <div className=" w-full flex justify-between items-center">
                {/* nom compte */}
-               {compte && (
-                <h1 className='text-bg-secondaire font-semibold text-xl'>
-                 {compte.utilisateur.prenom} {compte.utilisateur?.nom}
-                </h1>
-               )}
+                  {compte && (
+                    <h1 className="text-bg-secondaire font-semibold text-xl">
+                      {profil.prenom} {profil.nom}
+                    </h1>
+                  )}
                 {/* numero compte */}
                 <div className="numero_compte backdrop-blur-sm px-5 py-2 text-sm flex gap-5 items-center rounded-full bg-neutral-100/10  shadow-md">
                   <FaSearch className="text-neutral-4500" />

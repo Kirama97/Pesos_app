@@ -1,37 +1,63 @@
 import React from 'react'
 import { toast } from 'react-toastify';
-
-import { useState } from 'react';
-
-
-const FormEnvoie = ({onClose}) => {
-
-
-  const [nom , setNom] = useState("");
-  const [montant , setMontant] = useState("");
-  const fraisFixe = 500;
-  const frais = montant ? Math.max(fraisFixe, montant * 0.02) : 0 ; 
-  const [total , setTotal] = useState(montant + frais);
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-        toast.success(
-      <p className="text-sm">
-          Envoi de <span className=" text-bg-secondaire">{montant}</span> CFA à {" "}
-          <span className=" text-bg-secondaire">{nom}</span>
-      </p>
-    );
-
-    if(onClose)  onClose();
-
-  }
+import { useState , useEffect } from 'react';
+import { transfertUtilisateur } from "../../services/api";
+// import { useOutletContext } from 'react-router-dom';
 
 
 
+const FormEnvoie = ({onClose }) => {
 
 
+// const context = useOutletContext() || {};
+// const { profil = {}, compte = {} } = context;
+
+// console.log(profil)
+
+  const [telephoneSource, setTelephoneSource] = useState();
+  const [telephoneDestination, setTelephoneDestination] = useState("");
+  const [montant, setMontant] = useState("");
+  const [frais, setFrais] = useState(0);
+  const [total, setTotal] = useState(0);
+
+// useEffect(() => {
+//   if (profil?.telephone) {
+//     setTelephoneSource(profil.telephone);
+//   }
+// }, [profil]);
+
+  useEffect(() => {
+    const f = (parseFloat(montant) * 1) / 100;
+    setFrais(isNaN(f) ? 0 : f);
+    setTotal(parseFloat(montant || 0) + (isNaN(f) ? 0 : f));
+  }, [montant]);
+
+
+const [loading, setLoading] = useState(false);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const data = await transfertUtilisateur({ telephoneSource, telephoneDestination, montant });
+   
+      toast.success(
+        <p className="text-sm">
+          ✅ Transfert réussi ! <br />
+          Montant : {montant} CFA <br />
+          Frais : {frais.toFixed(2)} CFA <br />
+          Total payé : {total.toFixed(2)} CFA
+        </p>
+      );
+      if (onClose) onClose();
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  
 
 
 
@@ -52,11 +78,23 @@ const FormEnvoie = ({onClose}) => {
 
                {/* entrer numero compte */}
                 <div>
-                    <label className="block mb-1 font-medium">Compte du bénéficiaire</label>
+                    <label className="block mb-1 font-medium">Mon numero</label>
                     <input
                     type="text"
-                    value={nom}
-                    onChange={e => setNom(e.target.value)}
+                    value={telephoneSource}
+                     onChange={e => setTelephoneSource(e.target.value)}
+                    required
+                    className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-bg-secondaire"
+                    placeholder="mon numero"
+                    />
+              </div>
+               {/* entrer numero compte */}
+                <div>
+                    <label className="block mb-1 font-medium">Numero du bénéficiaire</label>
+                    <input
+                    type="text"
+                    value={telephoneDestination}
+                    onChange={e => setTelephoneDestination(e.target.value)}
                     required
                     className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-bg-secondaire"
                     placeholder="Numero de compte"
@@ -82,12 +120,10 @@ const FormEnvoie = ({onClose}) => {
             {/* Montant avec le frais */}
 
                <div>
-                    <label className="block mb-1 font-medium">Montant + frais (FCFA)</label>
+                    <label className="block mb-1 font-medium">Montant et frais (FCFA)</label>
                     <input
                     type="number"
                     value={total}
-                    onChange={e => setTotal(e.target.value)}
-                    required
                     disabled
                     className="w-full  rounded px-3 py-2 border focus:outline-none focus:ring-2 focus:ring-bg-secondaire text-bg-secondaire"
                     
@@ -96,19 +132,21 @@ const FormEnvoie = ({onClose}) => {
 
              <div className="flex justify-between items-center mt-2">
                 <span className="font-medium">Frais :</span>
-                <span className="text-bg-secondaire font-bold">{frais} FCFA</span>
+                <span className="text-bg-secondaire font-bold">{frais.toFixed(2)} FCFA</span>
              </div>
 
              
 
 
-            <button
+           <button
             type="submit"
-            className="mt-4 bg-bg-secondaire text-white rounded py-2  hover:bg-indigo-800 transition"
-            >
-            Envoyer
-           </button>
-
+            disabled={loading}
+            className={`mt-4 bg-bg-secondaire text-white rounded py-2 transition ${
+              loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-indigo-800'
+            }`}
+          >
+            {loading ? 'Envoi...' : 'Envoyer'}
+          </button>
 
 
             </form>
