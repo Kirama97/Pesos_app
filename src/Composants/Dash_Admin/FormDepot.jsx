@@ -2,13 +2,13 @@ import React from 'react'
 import { toast } from 'react-toastify';
 import { useState , useEffect } from 'react';
 import { transfertUtilisateur } from "../../services/api";
-import { le_numero } from './HomeDash';
+// import { le_numero } from './HomeDash';
 
 // import { useOutletContext } from 'react-router-dom';
 
 
 
-const FormEnvoie = ({onClose }) => {
+const FormDepot = ({onClose }) => {
 
 
 // const context = useOutletContext() || {};
@@ -16,20 +16,14 @@ const FormEnvoie = ({onClose }) => {
 
 // console.log(profil)
 
-  const [telephoneSource, setTelephoneSource] = useState(le_numero);
+
   const [telephoneDestination, setTelephoneDestination] = useState("");
   const [montant, setMontant] = useState("");
-  const [frais, setFrais] = useState(0);
-  const [total, setTotal] = useState(0);
 
 
 
-  useEffect(() => {
-    const f = (parseFloat(montant) * 1) / 100;
-    setFrais(isNaN(f) ? 0 : f);
-    setTotal(parseFloat(montant || 0) + (isNaN(f) ? 0 : f));
-  }, [montant]);
 
+  
 
 const [loading, setLoading] = useState(false);
 
@@ -41,10 +35,10 @@ const handleSubmit = async (e) => {
    
       toast.success(
         <p className="text-sm">
-          ✅ Transfert réussi ! <br />
+          ✅ Depot réussi ! <br />
           Montant : {montant} CFA <br />
-          Frais : {frais.toFixed(2)} CFA <br />
-          Total payé : {total.toFixed(2)} CFA
+         
+          
         </p>
       );
       if (onClose) onClose();
@@ -70,22 +64,11 @@ const handleSubmit = async (e) => {
             className='absolute top-5 right-5 text-gray-400 hover:text-red-500 duration-75 text-xl'> &times;
             </button>
 
-            <h2 className='text-2xl font-bold mb-6 text-center'>Envoyer de l'argent</h2>
+            <h2 className='text-2xl font-bold mb-6 text-center'>Depot D'argent</h2>
             <form action="" onSubmit={handleSubmit} className="flex flex-col gap-4">
 
 
-               {/* entrer numero compte */}
-                <div>
-                    <label className="block mb-1 font-medium">Mon numero</label>
-                    <input
-                    type="text"
-                    value={telephoneSource}
-                    disabled
-                    required
-                    className="w-full border rounded px-3 py-2 text-neutral-500 focus:outline-none focus:ring-2 focus:ring-bg-secondaire"
-                    
-                    />
-              </div>
+               
                {/* entrer numero compte */}
                 <div>
                     <label className="block mb-1 font-medium">Numero du bénéficiaire</label>
@@ -115,27 +98,8 @@ const handleSubmit = async (e) => {
                     />
             </div>
 
-            {/* Montant avec le frais */}
 
-               <div>
-                    <label className="block mb-1 font-medium">Montant et frais (FCFA)</label>
-                    <input
-                    type="number"
-                    value={total}
-                    disabled
-                    className="w-full  rounded px-3 py-2 border focus:outline-none focus:ring-2 focus:ring-bg-secondaire text-bg-secondaire"
-                    
-                    />
-            </div>
-
-             <div className="flex justify-between items-center mt-2">
-                <span className="font-medium">Frais :</span>
-                <span className="text-bg-secondaire font-bold">{frais.toFixed(2)} FCFA</span>
-             </div>
-
-             
-
-
+           
            <button
             type="submit"
             disabled={loading}
@@ -154,4 +118,4 @@ const handleSubmit = async (e) => {
   )
 }
 
-export default FormEnvoie
+export default FormDepot

@@ -8,14 +8,14 @@ import axios from 'axios';
 
 export let le_numero = "";
 
-const HomeDash = () => {
+const HomeDash_admin = () => {
   const { profil } = useOutletContext();
   const [operations, setOperations] = useState([]);
   const user = { devise: "FCFA" };
 
-  le_numero = profil.telephone;
+  // le_numero = profil.telephone;
 
-  console.log(le_numero);
+  // console.log(le_numero);
 
 
 
@@ -39,11 +39,6 @@ const HomeDash = () => {
     };
 
     fetchHistorique();
-
-     const interval = setInterval(fetchHistorique, 500);
-
-    
-    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -59,7 +54,7 @@ const HomeDash = () => {
       </div>
 
       <div>
-        <div className="font-semibold text-gray-700 mb-2">5 Dernières opérations</div>
+        <div className="font-semibold text-gray-700 mb-2">Dernières opérations</div>
         <div className="flex flex-col gap-2 h-[40vh] overflow-y-scroll ">
           {operations.map((op, index) => (
             <div key={index} className="flex items-center justify-between bg-gray-50 rounded p-3 shadow-sm">
@@ -72,4 +67,4 @@ const HomeDash = () => {
   );
 };
 
-export default HomeDash;
+export default HomeDash_admin;

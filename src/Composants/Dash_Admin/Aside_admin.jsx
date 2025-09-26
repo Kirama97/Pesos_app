@@ -6,8 +6,10 @@ import { BiHelpCircle } from 'react-icons/bi';
 import { AiOutlineSetting } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import { GiStopSign } from 'react-icons/gi';
+import { FaRegUser } from 'react-icons/fa';
 
-const Aside = () => {
+const Aside_admin = () => {
+
   // Fonction qui retourne les classes du NavLink
   const NavAside = (isActive) =>
     isActive
@@ -25,25 +27,34 @@ const Aside = () => {
       <img className="h-10 w-[60px] mx-auto" src={pesosLogoVerticale} alt="Pesos Logo" />
 
       <div className="icons flex items-center gap-3 flex-col mt-10">
-        <NavLink to="/dashboard/accueil" title="home" className={({ isActive }) => NavAside(isActive)}>
+        {/* HOME */}
+        <NavLink to="/admin/home" title="home" className={({ isActive }) => NavAside(isActive)}>
           {({ isActive }) => <FaHome className={NavAsideIcone(isActive)} />}
         </NavLink>
-
-        <NavLink to="/dashboard/historique" title="Historique" className={({ isActive }) => NavAside(isActive)}>
+          {/* ALL HISTORIQUE */}
+        <NavLink to="/admin/historique" title="Historique" className={({ isActive }) => NavAside(isActive)}>
           {({ isActive }) => <FaHistory className={NavAsideIcone(isActive)} />}
         </NavLink>
 
-        <NavLink to="/dashboard/annuler_transfert" title="Annuler transfert" className={({ isActive }) => NavAside(isActive)}>
+        
+        {/* ALL USER */}
+
+        <NavLink to="/admin/utilisateur" title="Utilisateur" className={({ isActive }) => NavAside(isActive)}>
+          {({ isActive }) => <FaRegUser className={NavAsideIcone(isActive)} />}
+        </NavLink>
+
+        {/* ALL USER */}
+        <NavLink to="/admin/annuler_transfert" title="Annuler transfert" className={({ isActive }) => NavAside(isActive)}>
           {({ isActive }) => <GiStopSign className={NavAsideIcone(isActive)} />}
         </NavLink>
       </div>
 
       <div className="icons flex items-center gap-3 flex-col mt-10">
-        <NavLink to="/dashboard/parametre" className={({ isActive }) => NavAside(isActive)}>
+        <NavLink to="/admin/parametre" className={({ isActive }) => NavAside(isActive)}>
           {({ isActive }) => <AiOutlineSetting className={NavAsideIcone(isActive)} />}
         </NavLink>
 
-        <NavLink to="/dashboard/aide" className={({ isActive }) => NavAside(isActive)}>
+        <NavLink to="/admin/aide" className={({ isActive }) => NavAside(isActive)}>
           {({ isActive }) => <BiHelpCircle className={NavAsideIcone(isActive)} />}
         </NavLink>
       </div>
@@ -51,4 +62,4 @@ const Aside = () => {
   );
 };
 
-export default Aside;
+export default Aside_admin;

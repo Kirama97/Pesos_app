@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FaUserEdit, FaCamera } from 'react-icons/fa'
-import Aside from './Aside'
+import Aside_admin from '../Dash_Admin/Aside_admin'
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchUserProfile } from '../../services/api';
@@ -13,7 +13,7 @@ import default_profil from '/src/assets/images/default_profil.jpg'
 
 
 
-const Profil = () => {
+const Profil_admin = () => {
 
 
 
@@ -101,7 +101,7 @@ const Profil = () => {
   return (
     <>
       <section className="h-[100vh] flex gap-5 bg-slate-300 p-5">
-        <Aside />
+        <Aside_admin />
         <main className='w-full'>
           <div className="bg-white rounded-xl h-full p-6 flex flex-col gap-8 shadow-lg transition-colors">
             <h1 className="text-center text-2xl font-bold mb-4 flex items-center justify-center gap-2 text-bg-secondaire">
@@ -221,4 +221,4 @@ const Profil = () => {
   )
 }
 
-export default Profil
+export default Profil_admin

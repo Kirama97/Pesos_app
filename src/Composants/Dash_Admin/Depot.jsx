@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { LuShare } from 'react-icons/lu';
-import FormRetrait from './FormRetrait';
+import FormDepot from './FormDepot';
 
 
 
 
-const Envoyer = () => {
+const Depot = () => {
 
 
     const [open , setOpen] = useState(false)
@@ -26,12 +26,12 @@ const Envoyer = () => {
                   <LuShare className=' group-hover:text-blanc duration-500 group-hover:animate-bounce text-green-500'></LuShare>
               </button>
               <div className="text-bg-primaire  text-sm">
-                  Envoie d'argent
+                  Faire un Depot
               </div>
           </div>
       </div>
 
-       {open &&  < FormEnvoie onClose={ () => setOpen(false) } />}
+       {open &&  < FormDepot onClose={ () => setOpen(false) } />}
   </>
    
 
@@ -39,4 +39,4 @@ const Envoyer = () => {
   )
 }
 
-export default Envoyer
+export default Depot

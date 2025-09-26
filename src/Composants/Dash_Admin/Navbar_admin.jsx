@@ -7,17 +7,18 @@ import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { FaRegUser } from 'react-icons/fa';
 // import default_profil from '/src/assets/images/default_profil.jpg'
 import pesos_img6 from '/src/assets/images/pesos_img6.png'
-import MontantCompte from './MontantCompte';
-import Envoyer from './Envoyer';
-import Retrait from './Retrait';
+import Depot from './Depot';
 import Badge from '@mui/material/Badge';
+import Retrait_admin from './Retrait_Admin';
+import Utilisateurs from './Utilisateurs';
 
 
 
 
 
 
-const Navbar = ({ compte , profil}) => {
+
+const Navbar_admin = ({ compte , profil}) => {
 
 
 
@@ -44,8 +45,8 @@ const Navbar = ({ compte , profil}) => {
                 {/* numero compte */}
                 <div className="numero_compte backdrop-blur-sm px-5 py-2 text-sm flex gap-5 items-center rounded-full bg-neutral-100/10  shadow-md">
                   <FaSearch className="text-neutral-4500" />
-                  <span className='flex items-center gap-3 rounded-full text-neutral-100 bg-indigo-600/50 backdrop-blur-lg py-2 px-3 '>Numero Compte : 
-                  {compte && ( <p>{compte.numeroCompte}</p> )}
+                  <span className='flex items-center gap-3 rounded-full text-neutral-100 bg-indigo-600/50 backdrop-blur-lg py-2 px-3 '>Compte : 
+                  {compte && ( <p>Administrateur</p> )}
              </span>
                 </div>
 
@@ -93,11 +94,11 @@ const Navbar = ({ compte , profil}) => {
             <div className="flex h-[15vh] w-full justify-between items-center mt-10">
 
                <div className="grid grid-cols-3 gap-5 w-3/6 h-full ">              
-                  <Envoyer></Envoyer>   
-                  <Retrait></Retrait>     
+                  <Depot/>
+                  <Retrait_admin/>   
                </div>
 
-               <MontantCompte compte={compte} ></MontantCompte>
+               <Utilisateurs compte={compte} ></Utilisateurs>
 
             </div>
 
@@ -106,7 +107,7 @@ const Navbar = ({ compte , profil}) => {
   )
 }
 
-export default Navbar
+export default Navbar_admin
 
 
 
@@ -118,23 +119,3 @@ export default Navbar
 
 
 
-
-  // <nav className='  rounded-full  py-1  text-sm shadow-lg text-noire flex justify-around items-center '>
-    //     <img className='h-12 w-30'  src={pesosLogo} alt="" srcset="" />
-
-    //     <ul className='flex gap-10 '>
-    //         <li>
-    //            <a href="">Home</a>
-    //         </li>
-    //         <li>
-    //            <a href="">Historique</a>
-    //         </li>
-    //         <li>
-    //            <a href="">Contact</a>
-    //         </li>
-    //     </ul>
-
-    //     <div className="">
-    //         <button className=''>Déconnexion</button>
-    //     </div>
-    // </nav>
